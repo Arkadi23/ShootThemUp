@@ -2,11 +2,14 @@
 
 
 #include "STUBaseWeapon.h"
+#include "Components/SkeletalMeshComponent.h"
 
 ASTUBaseWeapon::ASTUBaseWeapon()
 {
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 
+	WeaponMeshComponent = CreateDefaultSubobject<USkeletalMeshComponent>("WeaponMesh");
+	SetRootComponent(WeaponMeshComponent);
 }
 
 void ASTUBaseWeapon::BeginPlay()
@@ -15,9 +18,4 @@ void ASTUBaseWeapon::BeginPlay()
 	
 }
 
-void ASTUBaseWeapon::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
 

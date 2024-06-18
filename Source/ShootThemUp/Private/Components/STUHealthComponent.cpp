@@ -32,7 +32,7 @@ void USTUHealthComponent::OnTakeAnyDamage(AActor* DamageActor, float Damage, con
 	if (Damage <= 0.0f || IsDead() || !GetWorld())
 		return;
 
-	UE_LOG(LogHealthComponent, Warning, TEXT("Health: %f"), Health);
+	UE_LOG(LogHealthComponent, Display, TEXT("Health: %f"), Health);
 	
 	SetHealth(Health - Damage);
 	
@@ -48,6 +48,8 @@ void USTUHealthComponent::OnTakeAnyDamage(AActor* DamageActor, float Damage, con
 
 void USTUHealthComponent::HealUpdate()
 {
+	if (IsDead())
+		return;
 	SetHealth(Health + HealModifier);
 	OnHealthChanged.Broadcast(Health);
 

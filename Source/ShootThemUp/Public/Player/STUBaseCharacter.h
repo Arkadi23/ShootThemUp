@@ -10,7 +10,7 @@ class UTextRenderComponent;
 class USpringArmComponent;
 class UCameraComponent;
 class USTUHealthComponent;
-class ASTUBaseWeapon;
+class USTUWeaponComponent;
 
 UCLASS()
 class SHOOTTHEMUP_API ASTUBaseCharacter : public ACharacter
@@ -34,7 +34,10 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
 	UTextRenderComponent* HealthTextComponent;
-
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
+	USTUWeaponComponent* WeaponComponent;
+	
 	UPROPERTY(EditDefaultsOnly, Category = "Animation")
 	UAnimMontage* DeadAnimMontage;
 
@@ -46,9 +49,6 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Damage")
 	float LifeSpanOnDeath = 5.0f;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
-	TSubclassOf<ASTUBaseWeapon> WeaponClass;
 
 public:	
 	virtual void Tick(float DeltaTime) override;
@@ -76,5 +76,4 @@ private:
 	UFUNCTION()
 	void OnGroundLanded(const FHitResult& Hit);
 
-	void SpawnWeapon();
 };

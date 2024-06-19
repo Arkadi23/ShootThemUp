@@ -21,7 +21,6 @@ public:
 	UFUNCTION(BlueprintCallable)
 	bool IsDead() const
 	{
-		// return FMath::IsNearlyZero(Health);
 		return Health <= 0.0f;
 	}
 

@@ -13,6 +13,7 @@
 #include "Components/TextRenderComponent.h"
 #include "GameFramework/Controller.h"
 #include "STUWeaponComponent.h"
+#include "Components/CapsuleComponent.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogBaseCharacter, All, All);
 
@@ -124,11 +125,13 @@ void ASTUBaseCharacter::OnDead()
 	PlayAnimMontage(DeadAnimMontage);
 	GetCharacterMovement()->DisableMovement();
 	SetLifeSpan(LifeSpanOnDeath);
-
+	
 	if (Controller)
 	{
 		Controller->ChangeState(NAME_Spectating);
 	}
+
+	GetCapsuleComponent()->SetCollisionResponseToAllChannels(ECR_Ignore);
 }
 
 void ASTUBaseCharacter::OnHealthChanged(float Health)
